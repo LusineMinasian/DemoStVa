@@ -16,28 +16,35 @@
 </head>
 <body>
 
+<script crossorigin="anonymous" src="https://live-chat.spitch-dev.ai/webchat/index.js"></script>
 <script>
-  // Create and append the chat widget script
-  var script = document.createElement('script');
-  script.crossOrigin = 'anonymous';
-  script.src = "https://live-chat.spitch-dev.ai/webchat/index.js";
-  document.head.appendChild(script);
+  window.addEventListener('load', () => {
+    if (typeof window.web_chat_init !== 'function') {
+      console.log('WebChat is not initialized');
+      return;
+    }
 
-  // Create a container div for the chat widget
-  var div = document.createElement('div');
-  div.id = "artcosoft-web-chat";
-  div.style.cssText = "z-index: 1000; position: fixed;";
-  document.body.appendChild(div);
+    // Set the chat widget configuration with the required webhook ID
+    var webchat_id = '67ffe2b5b17d2d720f55cf1b';
+    var webchat_fqdn = 'live-chat.spitch-dev.ai';
 
-  // Set the chat widget configuration with the required webhook ID
-  var webchat_id = '67ffe2b5b17d2d720f55cf1b';
-  window.web_chat_config = {
-    endpoint: "wss://live-chat.spitch-dev.ai/webhooks/website/" + webchat_id
-  };
+    window.web_chat_config = {
+      endpoint: "wss://" + webchat_fqdn + "/webhooks/website/" + webchat_id
+    };
 
-  // Initialize the chat widget after a short delay
-  setTimeout(() => window.web_chat_init(), 500);
+    window.web_chat_init({
+      rootId: 'web-chat-root-id',
+      adapterId: webchat_id,
+      endpoint: window.web_chat_config.endpoint,
+      userData: {
+        username: 'anonymous',
+        firstName: 'anonymous',
+        lastName: 'anonymous'
+      }
+    });
+  });
 </script>
+
 
 </body>
 </html>
