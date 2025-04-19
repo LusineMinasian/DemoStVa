@@ -1,50 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Chat Widget Page</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      /* Set background image and style */
-      background: url('https://i.imgur.com/99ayhNJ.png') no-repeat center center fixed;
-      background-size: cover;
-    }
-  </style>
+    <title>Welcome to Regioenergie on a new ChatPlatform</title>
 </head>
 <body>
-
-<script crossorigin="anonymous" src="https://live-chat.spitch-dev.ai/webchat/index.js"></script>
-<script>
-  window.addEventListener('load', () => {
-    if (typeof window.web_chat_init !== 'function') {
-      console.log('WebChat is not initialized');
-      return;
-    }
-
-    // Set the chat widget configuration with the required webhook ID
-    var webchat_id = '67ffe2b5b17d2d720f55cf1b';
-    var webchat_fqdn = 'live-chat.spitch-dev.ai';
-
-    window.web_chat_config = {
-      endpoint: "wss://" + webchat_fqdn + "/webhooks/website/" + webchat_id
-    };
-
-    window.web_chat_init({
-      rootId: 'web-chat-root-id',
-      adapterId: webchat_id,
-      endpoint: window.web_chat_config.endpoint,
-      userData: {
-        username: 'anonymous',
-        firstName: 'anonymous',
-        lastName: 'anonymous'
-      }
-    });
-  });
-</script>
-
-
+    <h1>Welcome to Regioenergie on a new ChatPlatform</h1>
+    <p>Please click button in the right bottom corner for starting chat with bot</p>
 </body>
-</html>
+
+<div id="web-chat-root-id"></div>
+<script crossorigin="anonymous" src="https://utilities-chat.spitch.ch/webchat/index.js"></script>
+<script>
+        window.addEventListener('load', () => {
+        if (typeof window.web_chat_init !== 'function') {
+            console.log('WebChat is not initialized');
+            return;
+        }
+                var webchat_fqdn = 'utilities-chat.spitch.ch';
+                var webchat_id = '67f3bc7e608a4d832143f1de';
+
+        window.web_chat_init({
+            rootId: 'web-chat-root-id',
+            adapterId: webchat_id,
+            endpoint: `wss://${webchat_fqdn}/webhooks/website/${webchat_id}`,
+            userData: {
+                username: 'anonymous',
+                firstName: 'anonymous',
+                lastName: 'anonymous'
+            }
+        });
+        });
+</script>
